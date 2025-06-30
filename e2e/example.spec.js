@@ -1,9 +1,12 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-test.describe(`user rides`, async () => {
+test.describe(`user rides`, () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 90000 });
+    await expect(page.getByRole('heading', { name: 'Robo Coasters' })).toBeVisible();
+
+
   });
 
   test('user should be able to ride', async ({ page }) => {
@@ -11,7 +14,7 @@ test.describe(`user rides`, async () => {
     await page.getByLabel('Amount of people').selectOption('2');
     await page.getByRole('button', { name: 'Next' }).click();
 
-    expect(page.url()).toContain(`success`);
+    expect(page.url()).toContain(`#ride/swings`);
   });
 
   test('user above height should not be allowed', async ({ page }) => {

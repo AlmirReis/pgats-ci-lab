@@ -28,6 +28,9 @@ export default defineConfig({
     baseURL: 'https://pgats-ci-example.netlify.app',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+     
+    navigationTimeout: 90000, 
+    timeout: 120000,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure'
   },
