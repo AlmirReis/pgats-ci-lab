@@ -4,9 +4,9 @@ import { test, expect } from '@playwright/test';
 test.describe(`user rides`, () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 90000 });
-    await expect(page.getByRole('heading', { name: 'Robo Coasters' })).toBeVisible();
-
-
+    await expect(
+      page.getByRole('heading', { name: 'Robo Coasters' }),
+    ).toBeVisible();
   });
 
   test('user should be able to ride', async ({ page }) => {
